@@ -1,0 +1,1539 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SkillStory CV</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172026;
+        --muted: #61727a;
+        --line: #d9e2e7;
+        --paper: #f7f9fb;
+        --panel: #ffffff;
+        --blue: #2563eb;
+        --cyan: #0e7490;
+        --green: #188a5c;
+        --amber: #a16207;
+        --rose: #d94f45;
+        --shadow: 0 14px 34px rgba(23, 32, 38, 0.12);
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          linear-gradient(90deg, rgba(37, 99, 235, 0.06), transparent 38%),
+          linear-gradient(180deg, #fbfcfd, var(--paper));
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        letter-spacing: 0;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .app {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 286px minmax(0, 1fr) 340px;
+      }
+
+      .rail,
+      .evidence {
+        min-height: 100vh;
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .rail {
+        border-right: 1px solid var(--line);
+      }
+
+      .evidence {
+        border-left: 1px solid var(--line);
+      }
+
+      .rail-inner,
+      .evidence-inner {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: auto;
+        padding: 24px;
+      }
+
+      .profile {
+        display: grid;
+        grid-template-columns: 58px 1fr;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .avatar {
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: white;
+        background: conic-gradient(from 180deg, var(--blue), var(--green), var(--amber), var(--rose), var(--blue));
+        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.76);
+        font-size: 19px;
+        font-weight: 800;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .profile h1 {
+        margin-bottom: 5px;
+        font-size: 18px;
+        line-height: 1.15;
+      }
+
+      .profile p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .summary {
+        margin: 20px 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 13px;
+        background: #fff;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .section-title {
+        margin: 22px 0 10px;
+        color: #35444c;
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .skill-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .skill-button {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 12px;
+        background: #fff;
+        color: var(--ink);
+        cursor: pointer;
+        text-align: left;
+        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .skill-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 18px rgba(23, 32, 38, 0.08);
+      }
+
+      .skill-button.is-active {
+        border-color: rgba(37, 99, 235, 0.62);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+      }
+
+      .skill-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .skill-name {
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .score {
+        min-width: 42px;
+        border-radius: 999px;
+        padding: 4px 8px;
+        color: #fff;
+        background: var(--ink);
+        font-size: 12px;
+        font-weight: 800;
+        text-align: center;
+      }
+
+      .skill-button p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      main {
+        min-width: 0;
+        padding: 28px;
+      }
+
+      .workspace {
+        display: grid;
+        min-height: calc(100vh - 56px);
+        grid-template-rows: auto minmax(470px, 1fr) auto;
+        gap: 18px;
+      }
+
+      .headline {
+        max-width: 980px;
+      }
+
+      .headline .eyebrow {
+        color: var(--cyan);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .headline h2 {
+        margin: 8px 0 10px;
+        font-size: 32px;
+        line-height: 1.06;
+      }
+
+      .headline p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .story-stage {
+        position: relative;
+        min-height: 548px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(23, 32, 38, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(23, 32, 38, 0.035) 1px, transparent 1px),
+          #ffffff;
+        background-size: 32px 32px;
+        box-shadow: var(--shadow);
+      }
+
+      .stage-overlay {
+        display: grid;
+        min-height: 548px;
+        grid-template-columns: minmax(240px, 34%) minmax(0, 1fr);
+      }
+
+      .story-stage.is-issue-flow .stage-overlay {
+        grid-template-columns: 1fr;
+      }
+
+      .story-stage.is-issue-flow .narrative {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .story-stage.is-issue-flow .diagram {
+        min-height: 620px;
+      }
+
+      .narrative {
+        display: grid;
+        align-content: space-between;
+        gap: 18px;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.94);
+        border-right: 1px solid var(--line);
+      }
+
+      .phase-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        border-radius: 999px;
+        padding: 7px 10px;
+        color: #fff;
+        background: var(--blue);
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .pulse-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.85);
+        animation: pulse 1.8s ease-out infinite;
+      }
+
+      .narrative h3 {
+        margin: 14px 0 10px;
+        font-size: 24px;
+        line-height: 1.14;
+      }
+
+      .narrative p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .method-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .method {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 10px;
+        background: #fff;
+      }
+
+      .method b {
+        display: block;
+        font-size: 12px;
+      }
+
+      .method span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .icon-btn {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--ink);
+        background: #fff;
+        cursor: pointer;
+        transition: background 160ms ease, color 160ms ease, transform 160ms ease;
+      }
+
+      .icon-btn:hover {
+        color: #fff;
+        background: var(--ink);
+        transform: translateY(-1px);
+      }
+
+      .icon-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .diagram {
+        position: relative;
+        min-height: 548px;
+      }
+
+      .flow-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .flow-path {
+        fill: none;
+        stroke: rgba(37, 99, 235, 0.22);
+        stroke-width: 3;
+        stroke-linecap: round;
+        stroke-dasharray: 8 12;
+        animation: pathMove 1.6s linear infinite;
+      }
+
+      .node {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        width: 142px;
+        min-height: 88px;
+        border: 1px solid rgba(23, 32, 38, 0.14);
+        border-radius: var(--radius);
+        padding: 12px;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 12px 28px rgba(23, 32, 38, 0.12);
+        text-align: center;
+        transform: translateY(0) scale(0.98);
+        transition: opacity 280ms ease, transform 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+      }
+
+      .node small {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .node strong {
+        display: block;
+        font-size: 14px;
+        line-height: 1.22;
+      }
+
+      .node.is-dim {
+        opacity: 0.35;
+        transform: scale(0.94);
+      }
+
+      .node.is-hot {
+        border-color: rgba(217, 79, 69, 0.68);
+        box-shadow: 0 0 0 4px rgba(217, 79, 69, 0.12), 0 12px 30px rgba(23, 32, 38, 0.16);
+      }
+
+      .node.is-active {
+        border-color: rgba(37, 99, 235, 0.72);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14), 0 14px 32px rgba(23, 32, 38, 0.16);
+        transform: scale(1.02);
+      }
+
+      .issue-sim {
+        min-height: 548px;
+        display: grid;
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 14px;
+        padding: 18px;
+      }
+
+      .issue-roadmap {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .issue-stage {
+        min-height: 96px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.92);
+        transition: border-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease, transform 220ms ease;
+      }
+
+      .issue-stage.is-dim {
+        opacity: 0.46;
+      }
+
+      .issue-stage.is-active {
+        border-color: rgba(37, 99, 235, 0.7);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .issue-stage.is-hot {
+        border-color: rgba(217, 79, 69, 0.68);
+        box-shadow: 0 0 0 3px rgba(217, 79, 69, 0.12);
+      }
+
+      .issue-stage small {
+        display: block;
+        color: var(--cyan);
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .issue-stage strong {
+        display: block;
+        margin-top: 5px;
+        font-size: 13px;
+        line-height: 1.2;
+      }
+
+      .issue-stage span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      .sim-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) minmax(0, 1fr);
+        gap: 12px;
+        min-height: 0;
+      }
+
+      .sim-panel {
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 13px;
+        background: rgba(255, 255, 255, 0.94);
+      }
+
+      .sim-panel h4 {
+        margin: 0 0 12px;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+
+      .metric-stack,
+      .artifact-stack,
+      .query-track {
+        display: grid;
+        gap: 10px;
+      }
+
+      .metric-card,
+      .artifact-card,
+      .query-step {
+        border: 1px solid rgba(217, 226, 231, 0.92);
+        border-radius: var(--radius);
+        padding: 10px;
+        background: #fff;
+        transition: border-color 220ms ease, box-shadow 220ms ease, opacity 220ms ease, transform 220ms ease;
+      }
+
+      .metric-card.is-hot,
+      .query-step.is-hot,
+      .artifact-card.is-hot {
+        border-color: rgba(217, 79, 69, 0.68);
+        box-shadow: 0 0 0 3px rgba(217, 79, 69, 0.1);
+      }
+
+      .metric-card.is-active,
+      .query-step.is-active,
+      .artifact-card.is-active {
+        border-color: rgba(37, 99, 235, 0.65);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      .metric-card.is-dim,
+      .query-step.is-dim {
+        opacity: 0.5;
+      }
+
+      .metric-card b,
+      .artifact-card b,
+      .query-step b {
+        display: block;
+        font-size: 12px;
+      }
+
+      .metric-values,
+      .query-compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .metric-values span,
+      .query-compare span {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.35;
+      }
+
+      .metric-values strong,
+      .query-compare strong {
+        display: block;
+        margin-top: 2px;
+        font-size: 12px;
+      }
+
+      .bar {
+        height: 7px;
+        border-radius: 999px;
+        margin-top: 5px;
+        overflow: hidden;
+        background: #edf2f5;
+      }
+
+      .bar span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+      }
+
+      .bar-before span {
+        background: var(--rose);
+      }
+
+      .bar-after span {
+        background: var(--green);
+      }
+
+      .query-track {
+        position: relative;
+        padding-left: 22px;
+      }
+
+      .query-track::before {
+        position: absolute;
+        top: 20px;
+        bottom: 20px;
+        left: 9px;
+        width: 2px;
+        border-radius: 999px;
+        background: linear-gradient(var(--rose), var(--blue), var(--green));
+        content: "";
+      }
+
+      .query-packet {
+        position: absolute;
+        left: 4px;
+        top: var(--packet-y, 12%);
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--blue);
+        box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.14);
+        transform: translateY(-50%);
+        transition: top 420ms ease;
+      }
+
+      .artifact-card p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .outcome-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
+        gap: 12px;
+      }
+
+      .outcome {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px;
+        background: rgba(255, 255, 255, 0.94);
+      }
+
+      .outcome strong {
+        display: block;
+        color: var(--green);
+        font-size: 22px;
+        line-height: 1.1;
+      }
+
+      .outcome span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .evidence h2 {
+        margin-bottom: 8px;
+        font-size: 20px;
+      }
+
+      .evidence .sub {
+        margin-bottom: 20px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .evidence-list,
+      .detail-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .evidence-item,
+      .detail-item {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 14px;
+        background: #fff;
+      }
+
+      .evidence-item header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .badge {
+        border-radius: 999px;
+        padding: 4px 8px;
+        color: #fff;
+        background: var(--cyan);
+        font-size: 11px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .evidence-item h3,
+      .detail-item h3 {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.25;
+      }
+
+      .evidence-item p,
+      .detail-item p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.85);
+        }
+        100% {
+          box-shadow: 0 0 0 12px rgba(255, 255, 255, 0);
+        }
+      }
+
+      @keyframes pathMove {
+        to {
+          stroke-dashoffset: -40;
+        }
+      }
+
+      @media (max-width: 1180px) {
+        .app {
+          grid-template-columns: 250px minmax(0, 1fr);
+        }
+
+        .evidence {
+          grid-column: 1 / -1;
+          min-height: auto;
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+
+        .evidence-inner {
+          position: static;
+          height: auto;
+        }
+
+        .evidence-list {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 820px) {
+        .app {
+          display: block;
+        }
+
+        .rail,
+        .evidence {
+          min-height: auto;
+        }
+
+        .rail-inner,
+        .evidence-inner {
+          position: static;
+          height: auto;
+        }
+
+        main {
+          padding: 20px;
+        }
+
+        .skill-list {
+          grid-template-columns: repeat(2, minmax(210px, 1fr));
+          overflow-x: auto;
+          padding-bottom: 4px;
+        }
+
+        .headline h2 {
+          font-size: 26px;
+        }
+
+        .stage-overlay {
+          grid-template-columns: 1fr;
+        }
+
+        .narrative {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .diagram {
+          min-height: 420px;
+        }
+
+        .issue-sim {
+          min-height: 650px;
+        }
+
+        .issue-roadmap,
+        .sim-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .issue-stage {
+          min-height: auto;
+        }
+
+        .outcome-strip,
+        .evidence-list {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .rail-inner,
+        .evidence-inner,
+        main {
+          padding: 16px;
+        }
+
+        .skill-list,
+        .method-grid,
+        .outcome-strip,
+        .evidence-list {
+          grid-template-columns: 1fr;
+        }
+
+        .story-stage {
+          min-height: 780px;
+        }
+
+        .diagram {
+          min-height: 430px;
+        }
+
+        .issue-sim {
+          min-height: 760px;
+          padding: 12px;
+        }
+
+        .node {
+          width: 116px;
+          min-height: 78px;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <aside class="rail" aria-label="Profile and skill stories">
+        <div class="rail-inner">
+          <section class="profile">
+            <div class="avatar" id="avatar" aria-hidden="true">CV</div>
+            <div>
+              <h1 id="profileName">Candidate</h1>
+              <p id="profileRole">Software Engineer</p>
+            </div>
+          </section>
+          <div class="summary" id="profileSummary"></div>
+          <h2 class="section-title">Skill stories</h2>
+          <nav class="skill-list" id="skillList" aria-label="Skill story list"></nav>
+          <h2 class="section-title">Deep dive</h2>
+          <div class="detail-list" id="detailList"></div>
+        </div>
+      </aside>
+
+      <main>
+        <section class="workspace" aria-live="polite">
+          <div class="headline">
+            <div class="eyebrow" id="storyEyebrow">SkillStory</div>
+            <h2 id="storyTitle">SkillStory CV</h2>
+            <p id="storyIntro"></p>
+          </div>
+
+          <section class="story-stage" aria-label="Skill story animation">
+            <div class="stage-overlay">
+              <article class="narrative">
+                <div>
+                  <div class="phase-label" id="phaseLabel">
+                    <span class="pulse-dot" aria-hidden="true"></span>
+                    <span id="phaseName">Situation</span>
+                  </div>
+                  <h3 id="phaseTitle"></h3>
+                  <p id="phaseText"></p>
+                </div>
+
+                <div class="method-grid" id="methodGrid"></div>
+
+                <div class="controls" aria-label="Animation controls">
+                  <button class="icon-btn" type="button" id="prevBtn" aria-label="Previous phase">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M15.5 5 8.5 12l7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                  <button class="icon-btn" type="button" id="playBtn" aria-label="Pause animation">
+                    <svg id="playIcon" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" />
+                    </svg>
+                  </button>
+                  <button class="icon-btn" type="button" id="nextBtn" aria-label="Next phase">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m8.5 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+              </article>
+
+              <div class="diagram" id="diagram">
+                <svg class="flow-svg" viewBox="0 0 720 540" preserveAspectRatio="none" aria-hidden="true" id="flowSvg"></svg>
+              </div>
+            </div>
+          </section>
+
+          <section class="outcome-strip" id="outcomeStrip" aria-label="Measured outcomes"></section>
+        </section>
+      </main>
+
+      <aside class="evidence" aria-label="Evidence pack">
+        <div class="evidence-inner">
+          <h2>Evidence pack</h2>
+          <p class="sub" id="evidenceSub"></p>
+          <div class="evidence-list" id="evidenceList"></div>
+        </div>
+      </aside>
+    </div>
+
+    <script>
+      window.SKILLSTORY_DATA = {
+  "profile": {
+    "name": "Nguyen Van A",
+    "target_role": "Backend Engineer / Software Engineer",
+    "positioning": "Backend Engineer tap trung vao performance, reliability va data-heavy systems",
+    "summary": "Tôi biến các vấn đề production mơ hồ thành diagnosis có bằng chứng và kết quả đo được."
+  },
+  "stories": [
+    {
+      "skill": "SQL Performance Optimization",
+      "score": "4.8",
+      "headline": "Giảm SQL bottleneck production từ 4.8s P95 xuống 620ms",
+      "recruiter_summary": "Tối ưu dashboard production chậm bằng cách lần theo tín hiệu APM, đọc execution plan, rewrite query path, thêm composite index và kiểm chứng bằng metric sau release.",
+      "context": "Dashboard vận hành bị chậm khi dữ liệu tăng; summary API đạt khoảng 4.8s P95 vào giờ cao điểm.",
+      "problem": "Team nghi ngờ server CPU, nhưng DB CPU và slow query log cho thấy SQL bottleneck mới là root cause có khả năng cao.",
+      "actions": [
+        "Đối chiếu APM latency, database CPU và slow query log đã ẩn danh.",
+        "Dùng EXPLAIN ANALYZE để kiểm tra execution plan thay vì đoán nguyên nhân.",
+        "Tách query thành bước lọc id trước, sau đó aggregate related rows trên tập id nhỏ hơn.",
+        "Thêm composite index khớp với filter pattern phổ biến trong production.",
+        "Bổ sung test và metric theo query name để theo dõi sau release."
+      ],
+      "reasoning": [
+        "Giảm scan volume trước khi join và aggregate.",
+        "Đặt thứ tự index theo filter pattern thật trong production.",
+        "Kiểm chứng bằng metric before/after thay vì chỉ dựa vào local benchmark."
+      ],
+      "result": [
+        "P95 latency giảm từ khoảng 4.8s xuống 620ms.",
+        "Peak database CPU giảm khoảng 35%.",
+        "Query không còn xuất hiện trong top 5 slow queries sau release."
+      ],
+      "outcomes": [
+        {
+          "value": "4.8s -> 620ms",
+          "label": "P95 latency"
+        },
+        {
+          "value": "-35%",
+          "label": "peak database CPU"
+        },
+        {
+          "value": "Top 5",
+          "label": "slow query removed"
+        },
+        {
+          "value": "0",
+          "label": "incident mới sau release"
+        }
+      ],
+      "evidence": [
+        {
+          "type": "Metric",
+          "label": "APM latency before/after",
+          "description": "Cho thấy P95 latency giảm từ khoảng 4.8s xuống 620ms.",
+          "sensitivity": "anonymized"
+        },
+        {
+          "type": "Log",
+          "label": "Slow query log",
+          "description": "Cho thấy query đã tối ưu không còn nằm trong top 5 slow queries.",
+          "sensitivity": "anonymized"
+        },
+        {
+          "type": "PR",
+          "label": "Query builder optimization PR",
+          "description": "Cho thấy query rewrite, tests và metric instrumentation.",
+          "sensitivity": "private"
+        }
+      ],
+      "animation": {
+        "pattern": "signal-to-root-cause",
+        "nodes": [
+          {
+            "id": "symptom",
+            "label": "Symptom",
+            "text": "Dashboard chậm ở giờ cao điểm"
+          },
+          {
+            "id": "signals",
+            "label": "Signals",
+            "text": "APM latency, DB CPU, slow query log"
+          },
+          {
+            "id": "plan",
+            "label": "Execution Plan",
+            "text": "EXPLAIN ANALYZE cho thấy scan lớn"
+          },
+          {
+            "id": "fix",
+            "label": "Fix",
+            "text": "Rewrite query path + composite index"
+          },
+          {
+            "id": "result",
+            "label": "Result",
+            "text": "P95 4.8s -> 620ms"
+          }
+        ],
+        "phases": [
+          {
+            "label": "Situation",
+            "title": "Dashboard production load chậm",
+            "text": "API summary đạt khoảng 4.8s P95 vào giờ cao điểm.",
+            "active_nodes": [
+              "symptom"
+            ],
+            "hot_nodes": [
+              "symptom",
+              "latency"
+            ]
+          },
+          {
+            "label": "Task",
+            "title": "Tìm root cause thay vì scale theo cảm tính",
+            "text": "Đối chiếu APM, DB CPU và slow query log để kiểm tra giả thuyết SQL bottleneck.",
+            "active_nodes": [
+              "symptom",
+              "signals",
+              "scan"
+            ],
+            "hot_nodes": [
+              "signals",
+              "scan"
+            ]
+          },
+          {
+            "label": "Action",
+            "title": "Đọc execution plan và giảm scan volume",
+            "text": "Rewrite query, thêm composite index, bổ sung test và metric theo query name.",
+            "active_nodes": [
+              "signals",
+              "plan",
+              "fix",
+              "filter",
+              "scan",
+              "join",
+              "index"
+            ],
+            "hot_nodes": [
+              "plan",
+              "scan",
+              "index"
+            ]
+          },
+          {
+            "label": "Result",
+            "title": "Latency giảm rõ ràng sau release",
+            "text": "P95 còn 620ms, DB CPU giảm khoảng 35%, slow query rời top 5.",
+            "active_nodes": [
+              "fix",
+              "result",
+              "filter",
+              "scan",
+              "join",
+              "aggregate"
+            ],
+            "hot_nodes": [
+              "result",
+              "latency",
+              "cpu"
+            ]
+          }
+        ]
+      },
+      "issue_flow": {
+        "stages": [
+          {
+            "id": "symptom",
+            "label": "Production signal",
+            "detail": "Dashboard chậm, user nội bộ phải reload."
+          },
+          {
+            "id": "signals",
+            "label": "Evidence",
+            "detail": "APM latency, DB CPU và slow query log cùng chỉ về SQL."
+          },
+          {
+            "id": "plan",
+            "label": "Diagnosis",
+            "detail": "EXPLAIN ANALYZE cho thấy scan lớn trước khi aggregate."
+          },
+          {
+            "id": "fix",
+            "label": "Intervention",
+            "detail": "Filter id trước, thêm composite index, rewrite query builder."
+          },
+          {
+            "id": "result",
+            "label": "Verification",
+            "detail": "P95 4.8s -> 620ms, DB CPU -35%, slow query rời top 5."
+          }
+        ],
+        "query_path": [
+          {
+            "id": "filter",
+            "label": "Filter",
+            "before": "lọc muộn sau join",
+            "after": "lọc id theo tenant/date/status trước"
+          },
+          {
+            "id": "scan",
+            "label": "Scan",
+            "before": "scan nhiều dòng",
+            "after": "index range scan"
+          },
+          {
+            "id": "join",
+            "label": "Join",
+            "before": "join rowset lớn",
+            "after": "join tập id nhỏ hơn"
+          },
+          {
+            "id": "aggregate",
+            "label": "Aggregate",
+            "before": "aggregate sau khi dữ liệu phình ra",
+            "after": "aggregate trên bounded rows"
+          }
+        ],
+        "metrics": [
+          {
+            "id": "latency",
+            "label": "P95 latency",
+            "before": "4.8s",
+            "after": "620ms",
+            "before_level": 92,
+            "after_level": 18
+          },
+          {
+            "id": "cpu",
+            "label": "DB CPU",
+            "before": "peak high",
+            "after": "-35%",
+            "before_level": 82,
+            "after_level": 47
+          },
+          {
+            "id": "slow",
+            "label": "Slow query rank",
+            "before": "top 5",
+            "after": "removed",
+            "before_level": 76,
+            "after_level": 8
+          }
+        ],
+        "artifacts": [
+          {
+            "label": "Slow query log",
+            "detail": "query summary xuất hiện lặp lại ở giờ cao điểm"
+          },
+          {
+            "label": "Before plan",
+            "detail": "large scan + expensive join-before-aggregate"
+          },
+          {
+            "label": "After plan",
+            "detail": "composite index + smaller aggregation set"
+          },
+          {
+            "label": "APM chart",
+            "detail": "P95 latency và DB CPU giảm sau release"
+          }
+        ]
+      }
+    }
+  ]
+};
+
+      const data = window.SKILLSTORY_DATA || { profile: {}, stories: [] };
+      const state = { storyIndex: 0, phaseIndex: 0, playing: true, timer: null };
+      const $ = (selector) => document.querySelector(selector);
+
+      function text(value, fallback = "") {
+        if (value === undefined || value === null || value === "") return fallback;
+        return String(value);
+      }
+
+      function initials(name) {
+        return text(name, "CV")
+          .split(/\s+/)
+          .filter(Boolean)
+          .slice(0, 2)
+          .map((part) => part[0])
+          .join("")
+          .toUpperCase();
+      }
+
+      function currentStory() {
+        return data.stories[state.storyIndex] || data.stories[0] || {};
+      }
+
+      function currentPhase(story) {
+        const phases = story.animation?.phases || [];
+        return phases[state.phaseIndex] || phases[0] || {};
+      }
+
+      function renderProfile() {
+        const profile = data.profile || {};
+        $("#profileName").textContent = text(profile.name, "Candidate");
+        $("#profileRole").textContent = text(profile.target_role, "Software Engineer");
+        $("#profileSummary").textContent = text(profile.summary || profile.positioning, "Evidence-backed software engineer.");
+        $("#avatar").textContent = initials(profile.name);
+      }
+
+      function renderSkills() {
+        const list = $("#skillList");
+        list.innerHTML = "";
+        (data.stories || []).forEach((story, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "skill-button" + (index === state.storyIndex ? " is-active" : "");
+          button.innerHTML = `
+            <span class="skill-top">
+              <span class="skill-name"></span>
+              <span class="score"></span>
+            </span>
+            <p></p>
+          `;
+          button.querySelector(".skill-name").textContent = text(story.skill, `Story ${index + 1}`);
+          button.querySelector(".score").textContent = text(story.score, "4.5");
+          button.querySelector("p").textContent = text(story.recruiter_summary || story.headline, "");
+          button.addEventListener("click", () => {
+            state.storyIndex = index;
+            state.phaseIndex = 0;
+            render();
+            restartTimer();
+          });
+          list.append(button);
+        });
+      }
+
+      function renderDetails(story) {
+        const detailList = $("#detailList");
+        const details = [
+          ["Context", story.context],
+          ["Problem", story.problem],
+          ["Reasoning", (story.reasoning || []).join(" ")],
+        ].filter(([, value]) => value);
+        detailList.innerHTML = "";
+        details.forEach(([title, value]) => {
+          const item = document.createElement("article");
+          item.className = "detail-item";
+          item.innerHTML = "<h3></h3><p></p>";
+          item.querySelector("h3").textContent = title;
+          item.querySelector("p").textContent = value;
+          detailList.append(item);
+        });
+      }
+
+      function nodePositions(count) {
+        const presets = {
+          1: [[50, 48]],
+          2: [[24, 28], [70, 68]],
+          3: [[20, 24], [50, 50], [74, 72]],
+          4: [[18, 22], [72, 22], [24, 72], [74, 72]],
+          5: [[16, 18], [74, 18], [50, 48], [18, 74], [74, 74]],
+          6: [[14, 18], [50, 16], [76, 28], [18, 70], [52, 74], [78, 68]],
+        };
+        return presets[Math.min(Math.max(count, 1), 6)];
+      }
+
+      function stateClass(id, phase) {
+        const active = new Set(phase.active_nodes || []);
+        const hot = new Set(phase.hot_nodes || []);
+        if (hot.has(id)) return " is-hot";
+        if (active.has(id)) return " is-active";
+        return " is-dim";
+      }
+
+      function renderIssueFlow(story, phase) {
+        const diagram = $("#diagram");
+        const svg = $("#flowSvg");
+        diagram.querySelectorAll(".node, .issue-sim").forEach((node) => node.remove());
+        svg.innerHTML = "";
+
+        const flow = story.issue_flow || {};
+        const sim = document.createElement("div");
+        sim.className = "issue-sim";
+
+        const roadmap = document.createElement("div");
+        roadmap.className = "issue-roadmap";
+        (flow.stages || story.animation?.nodes || []).slice(0, 5).forEach((stage) => {
+          const card = document.createElement("article");
+          card.className = `issue-stage${stateClass(stage.id, phase)}`;
+          card.innerHTML = "<small></small><strong></strong><span></span>";
+          card.querySelector("small").textContent = text(stage.label, stage.id);
+          card.querySelector("strong").textContent = text(stage.detail || stage.text, "");
+          card.querySelector("span").textContent = stateClass(stage.id, phase).includes("hot") ? "current bottleneck" : "issue step";
+          roadmap.append(card);
+        });
+
+        const grid = document.createElement("div");
+        grid.className = "sim-grid";
+
+        const metricsPanel = document.createElement("section");
+        metricsPanel.className = "sim-panel";
+        metricsPanel.innerHTML = "<h4>Production signals</h4><div class='metric-stack'></div>";
+        const metricStack = metricsPanel.querySelector(".metric-stack");
+        (flow.metrics || []).slice(0, 4).forEach((metric) => {
+          const card = document.createElement("article");
+          card.className = `metric-card${stateClass(metric.id || metric.label, phase)}`;
+          card.innerHTML = `
+            <b></b>
+            <div class="metric-values">
+              <span>Before<strong></strong><div class="bar bar-before"><span></span></div></span>
+              <span>After<strong></strong><div class="bar bar-after"><span></span></div></span>
+            </div>
+          `;
+          card.querySelector("b").textContent = text(metric.label, "Metric");
+          card.querySelector(".metric-values span:first-child strong").textContent = text(metric.before, "before");
+          card.querySelector(".metric-values span:last-child strong").textContent = text(metric.after, "after");
+          card.querySelector(".bar-before span").style.width = `${Math.max(4, Number(metric.before_level || 72))}%`;
+          card.querySelector(".bar-after span").style.width = `${Math.max(4, Number(metric.after_level || 28))}%`;
+          metricStack.append(card);
+        });
+
+        const queryPanel = document.createElement("section");
+        queryPanel.className = "sim-panel";
+        queryPanel.innerHTML = "<h4>Query path simulation</h4><div class='query-track'><span class='query-packet' aria-hidden='true'></span></div>";
+        const queryTrack = queryPanel.querySelector(".query-track");
+        const phases = story.animation?.phases || [];
+        const progress = phases.length > 1 ? state.phaseIndex / (phases.length - 1) : 0;
+        queryPanel.querySelector(".query-packet").style.setProperty("--packet-y", `${10 + progress * 78}%`);
+        (flow.query_path || []).forEach((step) => {
+          const card = document.createElement("article");
+          card.className = `query-step${stateClass(step.id, phase)}`;
+          card.innerHTML = `
+            <b></b>
+            <div class="query-compare">
+              <span>Before<strong></strong></span>
+              <span>After<strong></strong></span>
+            </div>
+          `;
+          card.querySelector("b").textContent = text(step.label, step.id);
+          card.querySelector(".query-compare span:first-child strong").textContent = text(step.before, "");
+          card.querySelector(".query-compare span:last-child strong").textContent = text(step.after, "");
+          queryTrack.append(card);
+        });
+
+        const artifactPanel = document.createElement("section");
+        artifactPanel.className = "sim-panel";
+        artifactPanel.innerHTML = "<h4>Evidence artifacts</h4><div class='artifact-stack'></div>";
+        const artifactStack = artifactPanel.querySelector(".artifact-stack");
+        (flow.artifacts || []).slice(0, 5).forEach((artifact, index) => {
+          const stage = (flow.stages || [])[Math.min(index, Math.max((flow.stages || []).length - 1, 0))];
+          const id = artifact.id || stage?.id || `artifact-${index}`;
+          const card = document.createElement("article");
+          card.className = `artifact-card${stateClass(id, phase)}`;
+          card.innerHTML = "<b></b><p></p>";
+          card.querySelector("b").textContent = text(artifact.label, `Artifact ${index + 1}`);
+          card.querySelector("p").textContent = text(artifact.detail, "");
+          artifactStack.append(card);
+        });
+
+        grid.append(metricsPanel, queryPanel, artifactPanel);
+        sim.append(roadmap, grid);
+        diagram.append(sim);
+      }
+
+      function renderDiagram(story, phase) {
+        const diagram = $("#diagram");
+        const svg = $("#flowSvg");
+        if (story.issue_flow || story.animation?.pattern === "signal-to-root-cause") {
+          renderIssueFlow(story, phase);
+          return;
+        }
+        diagram.querySelectorAll(".node, .issue-sim").forEach((node) => node.remove());
+        svg.innerHTML = "";
+        const nodes = (story.animation?.nodes || []).slice(0, 6);
+        const positions = nodePositions(nodes.length);
+        nodes.forEach((node, index) => {
+          const [x, y] = positions[index];
+          const element = document.createElement("div");
+          element.className = "node";
+          element.dataset.node = node.id;
+          element.style.left = `calc(${x}% - 71px)`;
+          element.style.top = `calc(${y}% - 44px)`;
+          element.innerHTML = "<div><small></small><strong></strong></div>";
+          element.querySelector("small").textContent = text(node.label, node.id);
+          element.querySelector("strong").textContent = text(node.text, "");
+          diagram.append(element);
+        });
+        for (let i = 0; i < Math.max(nodes.length - 1, 0); i += 1) {
+          const [x1, y1] = positions[i];
+          const [x2, y2] = positions[i + 1];
+          const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          path.setAttribute("class", "flow-path");
+          path.setAttribute("d", `M ${x1 * 7.2} ${y1 * 5.4} C ${(x1 + x2) * 3.6} ${y1 * 5.4}, ${(x1 + x2) * 3.6} ${y2 * 5.4}, ${x2 * 7.2} ${y2 * 5.4}`);
+          svg.append(path);
+        }
+        updateNodeState(phase);
+      }
+
+      function updateNodeState(phase) {
+        const active = new Set(phase.active_nodes || []);
+        const hot = new Set(phase.hot_nodes || []);
+        document.querySelectorAll(".node").forEach((node) => {
+          const key = node.dataset.node;
+          node.classList.toggle("is-hot", hot.has(key));
+          node.classList.toggle("is-active", active.has(key));
+          node.classList.toggle("is-dim", !hot.has(key) && !active.has(key));
+        });
+      }
+
+      function renderStory() {
+        const story = currentStory();
+        const phase = currentPhase(story);
+        const isIssueFlow = Boolean(story.issue_flow || story.animation?.pattern === "signal-to-root-cause");
+        $(".story-stage").classList.toggle("is-issue-flow", isIssueFlow);
+        $("#storyEyebrow").textContent = `${text(story.skill, "Skill")} · ${text(story.animation?.pattern, "story")}`;
+        $("#storyTitle").textContent = text(story.headline, story.skill);
+        $("#storyIntro").textContent = text(story.recruiter_summary, "");
+        $("#phaseName").textContent = text(phase.label, "Phase");
+        $("#phaseTitle").textContent = text(phase.title, "");
+        $("#phaseText").textContent = text(phase.text, "");
+
+        const actions = (story.actions || []).slice(0, 4);
+        $("#methodGrid").innerHTML = "";
+        actions.forEach((action, index) => {
+          const item = document.createElement("div");
+          item.className = "method";
+          item.innerHTML = "<b></b><span></span>";
+          item.querySelector("b").textContent = `Action ${index + 1}`;
+          item.querySelector("span").textContent = action;
+          $("#methodGrid").append(item);
+        });
+
+        $("#outcomeStrip").innerHTML = "";
+        (story.outcomes || []).slice(0, 4).forEach((outcome) => {
+          const item = document.createElement("article");
+          item.className = "outcome";
+          item.innerHTML = "<strong></strong><span></span>";
+          item.querySelector("strong").textContent = text(outcome.value, "Impact");
+          item.querySelector("span").textContent = text(outcome.label, "");
+          $("#outcomeStrip").append(item);
+        });
+
+        $("#evidenceSub").textContent = text(story.recruiter_summary, "Evidence for this skill story.");
+        $("#evidenceList").innerHTML = "";
+        (story.evidence || []).forEach((evidence) => {
+          const item = document.createElement("article");
+          item.className = "evidence-item";
+          item.innerHTML = "<header><h3></h3><span class='badge'></span></header><p></p>";
+          item.querySelector("h3").textContent = text(evidence.label, "Evidence");
+          item.querySelector(".badge").textContent = text(evidence.type, "Evidence");
+          item.querySelector("p").textContent = text(evidence.description || evidence.sensitivity, "");
+          $("#evidenceList").append(item);
+        });
+
+        renderDetails(story);
+        renderDiagram(story, phase);
+      }
+
+      function renderPlayState() {
+        $("#playBtn").setAttribute("aria-label", state.playing ? "Pause animation" : "Play animation");
+        $("#playIcon").innerHTML = state.playing
+          ? '<path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" />'
+          : '<path d="M8 5v14l11-7z" fill="currentColor" />';
+      }
+
+      function render() {
+        renderProfile();
+        renderSkills();
+        renderStory();
+        renderPlayState();
+      }
+
+      function nextPhase() {
+        const phases = currentStory().animation?.phases || [];
+        state.phaseIndex = phases.length ? (state.phaseIndex + 1) % phases.length : 0;
+        renderStory();
+      }
+
+      function prevPhase() {
+        const phases = currentStory().animation?.phases || [];
+        state.phaseIndex = phases.length ? (state.phaseIndex - 1 + phases.length) % phases.length : 0;
+        renderStory();
+      }
+
+      function restartTimer() {
+        window.clearInterval(state.timer);
+        if (state.playing) {
+          state.timer = window.setInterval(nextPhase, 3600);
+        }
+      }
+
+      $("#nextBtn").addEventListener("click", () => {
+        nextPhase();
+        restartTimer();
+      });
+
+      $("#prevBtn").addEventListener("click", () => {
+        prevPhase();
+        restartTimer();
+      });
+
+      $("#playBtn").addEventListener("click", () => {
+        state.playing = !state.playing;
+        renderPlayState();
+        restartTimer();
+      });
+
+      render();
+      restartTimer();
+    </script>
+  </body>
+</html>
